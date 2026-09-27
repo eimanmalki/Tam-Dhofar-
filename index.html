@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ثقافة تم — البحث عن البطاقات</title>
+<style>
+  @font-face {
+    font-family: 'FS Albert Arabic';
+    src: local('FS Albert Arabic');
+  }
+  :root{
+    --navy:#000d39;
+    --navy2:#071454;
+    --orange:#e46c0b;
+    --orange2:#f79646;
+    --white:#ffffff;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'FS Albert Arabic','Segoe UI',Tahoma,sans-serif;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(244,140,6,0.12), transparent 30%),
+      radial-gradient(circle at 90% 85%, rgba(244,140,6,0.10), transparent 35%),
+      repeating-linear-gradient(115deg, transparent 0 120px, rgba(255,255,255,0.02) 120px 122px),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy2) 55%, var(--navy) 100%);
+    color:var(--white);
+    min-height:100vh;
+    line-height:1.6;
+  }
+  .stripes{
+    position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .stripe{
+    position:absolute; width:60px; height:180%; top:-40%;
+    background:linear-gradient(90deg, transparent, var(--orange) 45%, #ffb066 50%, var(--orange) 55%, transparent);
+    transform:rotate(28deg);
+    opacity:.85;
+  }
+  .stripe.s1{ left:-6%; }
+  .stripe.s2{ left:0%; width:14px; opacity:.5;}
+  .stripe.s3{ right:-6%; }
+  .stripe.s4{ right:0%; width:14px; opacity:.5;}
+
+  .wrap{ position:relative; z-index:1; max-width:900px; margin:0 auto; padding:28px 20px 60px; }
+
+  header{ display:flex; align-items:center; justify-content:space-between; gap:16px; margin-bottom:28px; flex-wrap:wrap;}
+  header img{ height:46px; }
+  h1{
+    font-size:clamp(26px,4.2vw,38px);
+    margin:0; text-align:center; flex:1; min-width:260px;
+    font-weight:800; line-height:1.35;
+  }
+  h1 span{ color:var(--orange2); }
+
+  .card{
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(244,140,6,0.35);
+    border-radius:16px;
+    padding:18px 20px;
+    margin-bottom:14px;
+    display:flex; align-items:flex-start; gap:14px;
+    backdrop-filter:blur(2px);
+  }
+  .card .icon{
+    flex:0 0 auto; width:42px; height:42px; border-radius:50%;
+    background:var(--orange); color:var(--navy);
+    display:flex; align-items:center; justify-content:center;
+    font-size:20px; font-weight:800;
+  }
+  .card p{ margin:0; font-size:16px; }
+
+  h2.section{
+    text-align:center; color:var(--orange2);
+    font-size:22px; margin:38px 0 18px;
+    position:relative;
+  }
+  h2.section::before, h2.section::after{
+    content:''; display:inline-block; width:40px; height:2px; background:var(--orange);
+    vertical-align:middle; margin:0 10px;
+  }
+
+  ol.steps{ list-style:none; margin:0; padding:0; counter-reset:step; }
+  ol.steps li{
+    counter-increment:step;
+    background:rgba(255,255,255,0.04);
+    border-right:4px solid var(--orange);
+    border-radius:10px;
+    padding:14px 18px;
+    margin-bottom:10px;
+    display:flex; align-items:center; gap:14px;
+    font-size:15.5px;
+  }
+  ol.steps li::before{
+    content:counter(step);
+    flex:0 0 auto; width:32px; height:32px; border-radius:50%;
+    background:var(--orange); color:var(--navy);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:15px;
+  }
+
+  .warning{
+    margin-top:30px;
+    background:rgba(244,140,6,0.12);
+    border:1.5px solid var(--orange);
+    border-radius:14px;
+    padding:16px 20px;
+    display:flex; align-items:center; gap:14px;
+    font-weight:700;
+    font-size:15px;
+    text-align:center;
+  }
+  .warning .bang{
+    flex:0 0 auto; width:34px; height:34px; border-radius:50%;
+    background:var(--orange); color:var(--navy);
+    display:flex; align-items:center; justify-content:center; font-size:18px; font-weight:900;
+  }
+
+  footer{
+    text-align:center; margin-top:44px;
+  }
+  footer .tagline{
+    font-size:20px; letter-spacing:1px; color:var(--orange2); font-weight:800;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+  }
+  footer .final{
+    margin-top:10px; font-size:22px; font-weight:800;
+  }
+  footer .final .check{
+    display:inline-flex; width:30px;height:30px; border-radius:50%;
+    background:var(--orange); color:var(--navy); align-items:center; justify-content:center;
+    margin-left:8px; font-size:16px;
+  }
+
+  @media (max-width:520px){
+    .card{ padding:14px; }
+    h1{ font-size:24px; }
+  }
+</style>
+</head>
+<body>
+  <div class="stripes">
+    <div class="stripe s1"></div>
+    <div class="stripe s2"></div>
+    <div class="stripe s3"></div>
+    <div class="stripe s4"></div>
+  </div>
+
+  <div class="wrap">
+    <header>
+      <img src="data:image/png;base64,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" alt="Omantel">
+      <h1>مهمتك تبدأ الآن... جاهز تقول <span>«تم»</span>؟</h1>
+      <div style="width:46px"></div>
+    </header>
+
+    <div class="card">
+      <div class="icon">📍</div>
+      <p>أخفينا بطاقات تحمل (تم) وهي رسائل مرتبطة بثقافة الإنجاز في عملنا.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🏆</div>
+      <p>كل بطاقة تعثر عليها تقربك أكثر من الفوز.</p>
+    </div>
+
+    <div class="card">
+      <div class="icon">🧩</div>
+      <p>البطاقة الواحدة لا تكفي. بعض البطاقات تحمل أرقاماً. اجمع الأرقام، واربط الكلمات، وحاول اكتشاف الجملة النهائية.</p>
+    </div>
+
+    <h2 class="section">كيف تشارك؟</h2>
+    <ol class="steps">
+      <li>ابحث عن بطاقات «تم» في المبنى الرئيسي ومبنى الجوهرة.</li>
+      <li>اجمع البطاقات، كل بطاقة فيها رقم مع لون مطابق ليسهل عليك عملية البحث.</li>
+      <li>ابحث عن الكلمات الموجودة في عدد 3 من البطاقات فقط، وأكمل الجملة لتنتهي بـ"تم".</li>
+      <li>رتّب التلميحات الثلاث، واكتشف ثقافة عملنا.</li>
+      <li>عند الانتهاء، سيكون لديك 3 بطاقات، اتّبع التعليمات الموجودة على البطاقة الثالثة من الخلف.</li>
+    </ol>
+
+    <div class="warning">
+      <div class="bang">!</div>
+      <div>البطاقات داخل المبنى، ولا توجد في أدراج الموظفين الخاصة أو في أماكن غير مسموح بدخولها للجميع.</div>
+    </div>
+
+    <footer>
+      <div class="tagline">اكتشف... فكر... أنجز</div>
+      <div class="final">وفي النهاية... قل: <span class="check">✓</span> تم!</div>
+    </footer>
+  </div>
+</body>
+</html>
